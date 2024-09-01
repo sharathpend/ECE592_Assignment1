@@ -60,30 +60,15 @@ function cypher_text = calculate_aes_128(plain_text, debug)
         end
 
         state_matrix = sub_bytes(state_matrix, Sbox_ram);
-        if debug >= 2
-            state_matrix_hex_str = conv_state_to_hex_str(state_matrix, length(plain_text_dec));
-            fprintf("\n State after Sub Bytes     = 0x%s", lower(state_matrix_hex_str));
-        end
+        conv_state_to_hex_str=state_matrix
 
         state_matrix = shift_rows(state_matrix);
-        if debug >= 2
-            state_matrix_hex_str = conv_state_to_hex_str(state_matrix, length(plain_text_dec));
-            fprintf("\n State after Shift Rows    = 0x%s", lower(state_matrix_hex_str));
-        end
 
         if round_num ~= total_rounds
             state_matrix = mix_columns(state_matrix);
-            if debug >= 2
-                state_matrix_hex_str = conv_state_to_hex_str(state_matrix, length(plain_text_dec));
-                fprintf("\n State after Mix Cols      = 0x%s", lower(state_matrix_hex_str));
-            end
         end
 
         state_matrix = add_round_key(state_matrix, round_keys_matrix(:, (4*(round_num-1)+1):(4*round_num)));
-        if debug >= 2
-            state_matrix_hex_str = conv_state_to_hex_str(state_matrix, length(plain_text_dec));
-            fprintf("\n State after Add Round Key = 0x%s", lower(state_matrix_hex_str));
-        end
 
         if debug >= 1
             fprintf("\nRound = %d End", (round_num-1));
