@@ -9,7 +9,7 @@ function Sbox_ram = calc_sbox_matrix()
                     'e1f8981169d98e949b1e87e9ce5528df'; '8ca1890dbfe6426841992d0fb054bb16'];
 
     % each row will be one element: 63; 7c; ...
-    % Then convert that to decimal, and put in 16x16 matrix
+    % Then convert that to decimal
     Sbox_matrix_in_rows = reshape(Sbox_matrix', 2, [])';
     Sbox_ram = hex2dec(Sbox_matrix_in_rows);
 end

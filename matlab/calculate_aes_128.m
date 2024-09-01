@@ -61,5 +61,6 @@ function cypher_text = calculate_aes_128(plain_text)
     cypher_text = state_matrix(:); %changes output to column vector
     cypher_text = lower(dec2hex(cypher_text(1:length(plain_text_dec)))'); %converts output to hex
     cypher_text = cypher_text(:)'; %converts output to row vector
-    fprintf("\n\nCypher Text (hex) = 0x%s\n\n", cypher_text)
+    fprintf("\n\nPlain Text (hex)  = 0x%s\n", plain_text)
+    fprintf("Cypher Text (hex) = 0x%s\n\n", cypher_text)
 end
