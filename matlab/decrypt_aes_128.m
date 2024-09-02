@@ -36,7 +36,7 @@ function plain_text = decrypt_aes_128(cipher_text, debug)
     round_keys_matrix = initialize_round_keys(all_round_keys_hex, num_rows);
     
     % Calculate S-Box matrix one time.
-    Inverse_Sbox_ram = calc_sbox_matrix();
+    Inverse_Sbox_ram = calc_inverse_sbox_matrix();
 
     % Take 2 characters at a time, automatically calculate missing
     % dimension. Convert that value from hext to dec. This results in a
@@ -47,57 +47,67 @@ function plain_text = decrypt_aes_128(cipher_text, debug)
     % Initial Transformation
     round_num = total_rounds;
     if debug >= 1
-        fprintf("\n\nRound = %d Initial Transformation (Add Key) Start", (round_num-1));
+        fprintf("\n\nRound = %d Initial Transformation (Add Key) Start", (10-round_num+1));
     end
+
     state_matrix = add_round_key(state_matrix, round_keys_matrix(:, (((round_num-1)*4)+1):(round_num*4)));
+
+    if debug >= 2
+        state_matrix_hex_str = conv_state_to_hex_str(state_matrix, length(cipher_text_dec));
+        fprintf("\n State after Initial Transform  = 0x%s", lower(state_matrix_hex_str));
+    end
     if debug >= 1
-        fprintf("\nRound = %d Initial Transformation End", (round_num-1));
+        fprintf("\nRound = %d Initial Transformation End", (10-round_num+1));
     end
     
     % Round 10 to 1
     for round_num = (total_rounds-1):-1:1
         if debug >= 1
-            fprintf("\n\nRound = %d Start", (round_num-1));
+            fprintf("\n\nRound = %d Start", (10-round_num+1));
         end
         
         % Shift Rows
-        state_matrix = shift_rows(state_matrix);
+        state_matrix = inverse_shift_rows(state_matrix);
         if debug >= 2
             state_matrix_hex_str = conv_state_to_hex_str(state_matrix, length(cipher_text_dec));
-            fprintf("\n State after Shift Rows    = 0x%s", lower(state_matrix_hex_str));
+            fprintf("\n State after Inverse Shift Rows = 0x%s", lower(state_matrix_hex_str));
         end
 
         % Sub Bytes
         state_matrix = sub_bytes(state_matrix, Inverse_Sbox_ram);
         if debug >= 2
             state_matrix_hex_str = conv_state_to_hex_str(state_matrix, length(cipher_text_dec));
-            fprintf("\n State after Sub Bytes     = 0x%s", lower(state_matrix_hex_str));
+            fprintf("\n State after Inverse Sub Bytes  = 0x%s", lower(state_matrix_hex_str));
         end
 
         % Add Round Key
         state_matrix = add_round_key(state_matrix, round_keys_matrix(:, (((round_num-1)*4)+1):(round_num*4)));
         if debug >= 2
             state_matrix_hex_str = conv_state_to_hex_str(state_matrix, length(cipher_text_dec));
-            fprintf("\n State after Add Round Key = 0x%s", lower(state_matrix_hex_str));
+            fprintf("\n State after Add Round Key      = 0x%s", lower(state_matrix_hex_str));
         end
 
         % Mix Columns
         if round_num ~= 1
-            state_matrix = mix_columns(state_matrix);
+            state_matrix = inverse_mix_columns(state_matrix);
             if debug >= 2
                 state_matrix_hex_str = conv_state_to_hex_str(state_matrix, length(cipher_text_dec));
-                fprintf("\n State after Mix Cols      = 0x%s", lower(state_matrix_hex_str));
+                fprintf("\n State after Inverse Mix Cols   = 0x%s", lower(state_matrix_hex_str));
             end
         end
         
         if debug >= 1
-            fprintf("\nRound = %d End", (round_num-1));
+            fprintf("\nRound = %d End", (10-round_num+1));
         end
     end
 
     plain_text = conv_state_to_hex_str(state_matrix, length(cipher_text_dec));
     plain_text_lower_case = lower(plain_text);
+    
+    if debug >= 1
+        fprintf("\n\nPlain Text Upper Case (hex) = 0x%s", plain_text);
+        fprintf("\nPlain Text Lower Case (hex) = 0x%s\n\n", plain_text_lower_case);
+    end
 
-    fprintf("\n\nCypher Text Upper Case (hex) = 0x%s", plain_text)
-    fprintf("\nCypher Text Lower Case (hex) = 0x%s\n\n", plain_text_lower_case)
+    plain_text = plain_text_lower_case;
 end

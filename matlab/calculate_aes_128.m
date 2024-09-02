@@ -13,7 +13,7 @@ function cypher_text = calculate_aes_128(plain_text, debug)
     elseif nargin == 1
         debug = 0;
     end
-    
+
     % All round keys given in problem statement. Did not implement key
     % expansion function
     round_key_1  = '000102030405060708090a0b0c0d0e0f';
@@ -50,7 +50,13 @@ function cypher_text = calculate_aes_128(plain_text, debug)
     if debug >= 1
         fprintf("\n\nRound = %d (Initial Transformation, Add Key) Start", (round_num-1));
     end
+
     state_matrix = add_round_key(state_matrix, round_keys_matrix(:,1:4));
+
+    if debug >= 2
+        state_matrix_hex_str = conv_state_to_hex_str(state_matrix, length(plain_text_dec));
+        fprintf("\n State after Initial Transform  = 0x%s", lower(state_matrix_hex_str));
+    end
     if debug >= 1
         fprintf("\nRound = %d End", (round_num-1));
     end
@@ -99,6 +105,10 @@ function cypher_text = calculate_aes_128(plain_text, debug)
     cypher_text = conv_state_to_hex_str(state_matrix, length(plain_text_dec));
     cypher_text_lower_case = lower(cypher_text);
 
-    fprintf("\n\nCypher Text Upper Case (hex) = 0x%s", cypher_text)
-    fprintf("\nCypher Text Lower Case (hex) = 0x%s\n\n", cypher_text_lower_case)
+    if debug >= 1
+        fprintf("\n\nCypher Text Upper Case (hex) = 0x%s", cypher_text);
+        fprintf("\nCypher Text Lower Case (hex) = 0x%s\n\n", cypher_text_lower_case);
+    end
+
+    cypher_text = cypher_text_lower_case;
 end
