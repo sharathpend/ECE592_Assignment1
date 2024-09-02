@@ -30,6 +30,7 @@ function plain_text = decrypt_aes_128(cipher_text, debug)
     round_key_10 = '549932d1f08557681093ed9cbe2c974e';
     round_key_11 = '13111d7fe3944a17f307a78b4d2b30c5';
     num_rows = 4; % row size of state matrix for AES-128
+    num_cols = 4;
     total_rounds = 11;
 
     all_round_keys_hex = strcat(round_key_1, round_key_2, round_key_3, round_key_4, ...
@@ -44,7 +45,8 @@ function plain_text = decrypt_aes_128(cipher_text, debug)
     % dimension. Convert that value from hext to dec. This results in a
     % column vector with decimal value. Then reshape it into 4x4 matrix.
     cipher_text_dec = hex2dec(reshape(cipher_text, 2, [])');
-    state_matrix = reshape(cipher_text_dec, num_rows, []);
+    display_message_length = length(cipher_text_dec); % =16
+    state_matrix = reshape(cipher_text_dec, num_rows, num_cols);
     
     % Initial Transformation
     round_num = total_rounds;
@@ -55,7 +57,7 @@ function plain_text = decrypt_aes_128(cipher_text, debug)
     state_matrix = add_round_key(state_matrix, round_keys_matrix(:, (((round_num-1)*4)+1):(round_num*4)));
 
     if debug >= 2
-        state_matrix_hex_str = conv_state_to_hex_str(state_matrix, length(cipher_text_dec));
+        state_matrix_hex_str = conv_state_to_hex_str(state_matrix, display_message_length);
         fprintf("\n State after Initial Transform  = 0x%s", lower(state_matrix_hex_str));
     end
     if debug >= 1
@@ -71,21 +73,21 @@ function plain_text = decrypt_aes_128(cipher_text, debug)
         % Sub Bytes
         state_matrix = sub_bytes(state_matrix, Inverse_Sbox_ram);
         if debug >= 2
-            state_matrix_hex_str = conv_state_to_hex_str(state_matrix, length(cipher_text_dec));
+            state_matrix_hex_str = conv_state_to_hex_str(state_matrix, display_message_length);
             fprintf("\n State after Inverse Sub Bytes  = 0x%s", lower(state_matrix_hex_str));
         end
   
         % Shift Rows
         state_matrix = shift_rows(state_matrix, -1);
         if debug >= 2
-            state_matrix_hex_str = conv_state_to_hex_str(state_matrix, length(cipher_text_dec));
+            state_matrix_hex_str = conv_state_to_hex_str(state_matrix, display_message_length);
             fprintf("\n State after Inverse Shift Rows = 0x%s", lower(state_matrix_hex_str));
         end
 
         % Add Round Key
         state_matrix = add_round_key(state_matrix, round_keys_matrix(:, (((round_num-1)*4)+1):(round_num*4)));
         if debug >= 2
-            state_matrix_hex_str = conv_state_to_hex_str(state_matrix, length(cipher_text_dec));
+            state_matrix_hex_str = conv_state_to_hex_str(state_matrix, display_message_length);
             fprintf("\n State after Add Round Key      = 0x%s", lower(state_matrix_hex_str));
         end
 
@@ -93,7 +95,7 @@ function plain_text = decrypt_aes_128(cipher_text, debug)
         if round_num ~= 1
             state_matrix = inverse_mix_columns(state_matrix);
             if debug >= 2
-                state_matrix_hex_str = conv_state_to_hex_str(state_matrix, length(cipher_text_dec));
+                state_matrix_hex_str = conv_state_to_hex_str(state_matrix, display_message_length);
                 fprintf("\n State after Inverse Mix Cols   = 0x%s", lower(state_matrix_hex_str));
             end
         end
@@ -103,7 +105,7 @@ function plain_text = decrypt_aes_128(cipher_text, debug)
         end
     end
 
-    plain_text = conv_state_to_hex_str(state_matrix, length(cipher_text_dec));
+    plain_text = conv_state_to_hex_str(state_matrix, display_message_length);
     plain_text_lower_case = lower(plain_text);
     
     if debug >= 1

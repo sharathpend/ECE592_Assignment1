@@ -34,14 +34,12 @@ function p = peasants_algorithm_mult(a, b)
         a_msb = bitget(a, 8);
         a = bitshift(a, 1);
 
-        if a_msb == 1
-            a = bitset(a, 9, 0); % negate the MSB of shifted a, as we need 
-                                 % to get rid of that 9th bit. Not needed
-                                 % if the MSB is 0.
+        if a_msb
+            a = bitset(a, 9, 0);
             a = bitxor(a, hex2dec('1b'));
         end
 
-        if bitget(b, 1) == 1
+        if bitget(b, 1)
             p = bitxor(p, a);
         end
 
