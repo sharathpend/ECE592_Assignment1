@@ -77,7 +77,7 @@ function cypher_text = calculate_aes_128(plain_text, debug)
         end
 
         % Shift Rows
-        state_matrix = shift_rows(state_matrix);
+        state_matrix = shift_rows(state_matrix, 1);
         if debug >= 2
             state_matrix_hex_str = conv_state_to_hex_str(state_matrix, length(plain_text_dec));
             fprintf("\n State after Shift Rows    = 0x%s", lower(state_matrix_hex_str));

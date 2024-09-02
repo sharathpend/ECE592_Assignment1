@@ -7,7 +7,7 @@ function state_matrix = inverse_shift_rows(state_matrix)
     % Y = circshift(A,K,dim) circularly shifts the values in array A by K
     % positions along dimension dim. Inputs K and dim must be scalars.
     % https://www.mathworks.com/help/matlab/ref/circshift.html
-    state_matrix(2,:)=circshift(state_matrix(2,:),1);
-    state_matrix(3,:)=circshift(state_matrix(3,:),2);
-    state_matrix(4,:)=circshift(state_matrix(4,:),-1);
+    state_matrix(2,:) = circshift(state_matrix(2,:), 1);
+    state_matrix(3,:) = circshift(state_matrix(3,:), 2);
+    state_matrix(4,:) = circshift(state_matrix(4,:), -1);
 end

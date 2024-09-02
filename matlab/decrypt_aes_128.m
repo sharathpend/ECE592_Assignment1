@@ -67,19 +67,19 @@ function plain_text = decrypt_aes_128(cipher_text, debug)
         if debug >= 1
             fprintf("\n\nRound = %d Start", (10-round_num+1));
         end
-        
-        % Shift Rows
-        state_matrix = inverse_shift_rows(state_matrix);
-        if debug >= 2
-            state_matrix_hex_str = conv_state_to_hex_str(state_matrix, length(cipher_text_dec));
-            fprintf("\n State after Inverse Shift Rows = 0x%s", lower(state_matrix_hex_str));
-        end
-
+      
         % Sub Bytes
         state_matrix = sub_bytes(state_matrix, Inverse_Sbox_ram);
         if debug >= 2
             state_matrix_hex_str = conv_state_to_hex_str(state_matrix, length(cipher_text_dec));
             fprintf("\n State after Inverse Sub Bytes  = 0x%s", lower(state_matrix_hex_str));
+        end
+  
+        % Shift Rows
+        state_matrix = shift_rows(state_matrix, -1);
+        if debug >= 2
+            state_matrix_hex_str = conv_state_to_hex_str(state_matrix, length(cipher_text_dec));
+            fprintf("\n State after Inverse Shift Rows = 0x%s", lower(state_matrix_hex_str));
         end
 
         % Add Round Key
