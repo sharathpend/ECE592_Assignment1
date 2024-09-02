@@ -1,8 +1,10 @@
 % spendya@ncsu.edu
-% ECE 592 - Assignment 1
+% NC State - ECE 592 - Assignment 1
 % AES-128
 % Fixed Secret Key
 % Round Keys Provided
+% https://github.com/sharathpend/ECE592_Assignment1
+% You might have to request access if you want to see that repo.
 
 function cypher_text = calculate_aes_128(plain_text, debug)
     
