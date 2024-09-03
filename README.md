@@ -1,9 +1,12 @@
 # Advanced Encryption Standard (AES-128) in Matlab
 ![aes_lock_and_key](https://github.com/sharathpend/ECE592_Assignment1/blob/main/readme_images/aes.avif)
 
-# Links
+# Useful Links
 * [NIST FIPS 197 - AES](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.197-upd1.pdf)
 * [Wikipedia - AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)
+* [Wikipedia - Finite Field Arithmatic](https://en.wikipedia.org/wiki/Finite_field_arithmetic)
+* [Wikipedia - Rijndael MixColumns](https://en.wikipedia.org/wiki/Rijndael_MixColumns)
+* [Wikipedia - Rijndael S-box](https://en.wikipedia.org/wiki/Rijndael_S-box)
 
 
 # Background
@@ -26,7 +29,7 @@ Contact: spendya@ncsu.edu sharathpawan@gmail.com
 Website: W.I.P.
 
 
-# Course:
+# Course
 ECE 592 - Cryptograhpic Engineering and Hardware Security at NC State University by Dr.Aydin Aysu
 
 
@@ -43,7 +46,7 @@ Encrypt Function: /matlab/calculate_aes_128.m
 Decrypt Function: /matlab/decrypt_aes_128.m
 
 
-# Usage:
+# Usage
 
 ## Encrypt Function:
 
@@ -81,7 +84,7 @@ Decrypt Function: /matlab/decrypt_aes_128.m
     '000102030405060708090a0b0c0d0e0f'
 
 
-# Screenshots:
+# Screenshots
 
 Tested on Matlab R2023b.
 
@@ -105,3 +108,12 @@ Tested on Matlab R2023b.
 
 ## Decrypt with Intermediate Calculations - Part 3 of 3
 ![dec_debug_003](https://github.com/sharathpend/ECE592_Assignment1/blob/main/results/decrypt_function_in_matlab_with_debug_003.png)
+
+
+
+# Future Expansion
+
+* Add Key Expansion function to make it generic. I'll likely complete this in near future.
+* Add AES-192/AES-256. I'll probably not get to this.
+
+
