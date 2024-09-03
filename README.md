@@ -1,12 +1,12 @@
 Author: Sharath Pendyala
+
 spendya@ncsu.edu
+
 sharathpawan@gmail.com
 
 
 Course:
-ECE 592 - Cryptograhpic Engineering and Hardware Security
-NC State University
-Dr.Aydin Aysu
+ECE 592 - Cryptograhpic Engineering and Hardware Security at NC State University by Dr.Aydin Aysu
 
 
 Assignment 1: AES-128 Implementataion with a given fixed secret key and expanded keys.Bonus: Decrypt function.
@@ -19,7 +19,7 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 
-Top Level Matlab Function File Location
+>> Top Level Matlab Function File Location
 
 Encrypt Function: /matlab/calculate_aes_128.m
 
@@ -30,30 +30,30 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 
-Usage:
+>> Usage:
 
 Encrypt Function:
 
->> calculate_aes_128('00112233445566778899aabbccddeeff')
+	>> calculate_aes_128('00112233445566778899aabbccddeeff')
 
-ans =
+	ans =
 
     '69c4e0d86a7b0430d8cdb78070b4c55a'
 
 
 Decrypt Function:
 
->> decrypt_aes_128('69c4e0d86a7b0430d8cdb78070b4c55a')
+	>> decrypt_aes_128('69c4e0d86a7b0430d8cdb78070b4c55a')
 
-ans =
+	ans =
 
     '00112233445566778899aabbccddeeff'
 
 
 Decrypt(Encrypt()):
 
->> decrypt_aes_128(calculate_aes_128('00112233445566778899aabbccddeeff'))
+	>> decrypt_aes_128(calculate_aes_128('00112233445566778899aabbccddeeff'))
 
-ans =
+	ans =
 
     '00112233445566778899aabbccddeeff'
