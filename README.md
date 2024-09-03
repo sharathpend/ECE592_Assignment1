@@ -1,8 +1,6 @@
 Author: Sharath Pendyala
 
-spendya@ncsu.edu
-
-sharathpawan@gmail.com
+Contact: spendya@ncsu.edu sharathpawan@gmail.com
 
 
 Course:
@@ -12,7 +10,7 @@ ECE 592 - Cryptograhpic Engineering and Hardware Security at NC State University
 Assignment 1: AES-128 Implementataion with a given fixed secret key and expanded keys.Bonus: Decrypt function.
 
 
-These set of matlab scripts can encrypt and decrypt a 128-bit plain_text/cipher_text (in hexadecimal) with a given fixed secret key and its expanded keys (as per assignment instruction).Secret Key is fixed to be: 0x000102030405060708090a0b0c0d0e0f
+These set of matlab scripts can encrypt and decrypt a 128-bit plain_text/cipher_text (in hexadecimal) with a given fixed secret key and its expanded keys (as per assignment instruction). Secret Key is fixed to be: 0x000102030405060708090a0b0c0d0e0f
 
 
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
