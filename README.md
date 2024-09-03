@@ -45,7 +45,7 @@ Decrypt Function: /matlab/decrypt_aes_128.m
 
 # Usage:
 
-##Encrypt Function:
+## Encrypt Function:
 
 	>> calculate_aes_128('00112233445566778899aabbccddeeff')
 
@@ -54,7 +54,7 @@ Decrypt Function: /matlab/decrypt_aes_128.m
     '69c4e0d86a7b0430d8cdb78070b4c55a'
 
 
-##Decrypt Function:
+## Decrypt Function:
 
 	>> decrypt_aes_128('69c4e0d86a7b0430d8cdb78070b4c55a')
 
@@ -63,7 +63,7 @@ Decrypt Function: /matlab/decrypt_aes_128.m
     '00112233445566778899aabbccddeeff'
 
 
-##Decrypt(Encrypt()): Example 1
+## Decrypt(Encrypt()): Example 1
 
 	>> decrypt_aes_128(calculate_aes_128('00112233445566778899aabbccddeeff'))
 
@@ -72,7 +72,7 @@ Decrypt Function: /matlab/decrypt_aes_128.m
     '00112233445566778899aabbccddeeff'
 	
 
-##Decrypt(Encrypt()): Example 2
+## Decrypt(Encrypt()): Example 2
 
 	>> decrypt_aes_128(calculate_aes_128('000102030405060708090a0b0c0d0e0f'))
 
