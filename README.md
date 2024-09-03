@@ -1,5 +1,5 @@
 # Advanced Encryption Standard (AES-128) in Matlab
-![aes from Kekayan, Medium](https://user-images.githubusercontent.com/29122581/169694136-ca48f098-d5f5-448f-8016-4cb9a9b0e300.png)
+![aes_lock_and_key](https://github.com/sharathpend/ECE592_Assignment1/blob/main/readme_images/aes.avif)
 
 # Links
 * [NIST FIPS 197 - AES](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.197-upd1.pdf)
