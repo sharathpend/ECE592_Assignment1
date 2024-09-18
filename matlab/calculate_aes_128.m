@@ -6,7 +6,7 @@
 % https://github.com/sharathpend/ECE592_Assignment1
 % You might have to request access if you want to see that repo.
 
-function cypher_text = calculate_aes_128(plain_text, debug)
+function cipher_text = calculate_aes_128(plain_text, debug)
     
     if nargin > 2
         fprintf("Too many arguments.");
@@ -106,13 +106,13 @@ function cypher_text = calculate_aes_128(plain_text, debug)
         end
     end
 
-    cypher_text = conv_state_to_hex_str(state_matrix, display_message_length);
-    cypher_text_lower_case = lower(cypher_text);
+    cipher_text = conv_state_to_hex_str(state_matrix, display_message_length);
+    cipher_text_lower_case = lower(cipher_text);
 
     if debug >= 1
-        fprintf("\n\nCypher Text Upper Case (hex) = 0x%s", cypher_text);
-        fprintf("\nCypher Text Lower Case (hex) = 0x%s\n\n", cypher_text_lower_case);
+        fprintf("\n\ncipher Text Upper Case (hex) = 0x%s", cipher_text);
+        fprintf("\ncipher Text Lower Case (hex) = 0x%s\n\n", cipher_text_lower_case);
     end
 
-    cypher_text = cypher_text_lower_case;
+    cipher_text = cipher_text_lower_case;
 end
