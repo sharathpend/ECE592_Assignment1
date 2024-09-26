@@ -30,13 +30,13 @@ Website: W.I.P.
 
 
 # Course
-ECE 592 - Cryptograhpic Engineering and Hardware Security at NC State University by Dr.Aydin Aysu
+ECE 592 - Cryptograhpic Engineering and Hardware Security at NC State University by Dr. Aydin Aysu
 
 
 Assignment 1: AES-128 Implementataion with a given fixed secret key and expanded keys. Bonus: Implement a Decrypt function. Problem Statement in /problem_statement/ directory
 
 
-These set of matlab scripts can encrypt and decrypt a 128-bit plain_text/cipher_text (in hexadecimal) with a given fixed secret key and its expanded keys (as per assignment instruction). Secret Key is fixed to be: 0x000102030405060708090a0b0c0d0e0f
+These set of matlab scripts can encrypt and decrypt a 128-bit plain_text/cipher_text (in hexadecimal) with a given fixed secret key and its expanded keys (as per assignment instruction). Secret Key is fixed to be: 0x000102030405060708090a0b0c0d0e0f. I did implement AES-128 Key Expansion Function, so not giving a key as input assumes that the default Key is 0x000102030405060708090a0b0c0d0e0f. You could, however, provide a key that you would prefer to use.
 
 
 # Top Level Matlab Function File Location
@@ -48,25 +48,52 @@ Decrypt Function: /matlab/decrypt_aes_128.m
 
 # Usage
 
-## Encrypt Function:
+## Encrypt and Decrypt Function without providing Key (uses default Key):
 
 	>> calculate_aes_128('00112233445566778899aabbccddeeff')
 
 	ans =
 
     '69c4e0d86a7b0430d8cdb78070b4c55a'
-
-
-## Decrypt Function:
-
-	>> decrypt_aes_128('69c4e0d86a7b0430d8cdb78070b4c55a')
+    
+    >> decrypt_aes_128('69c4e0d86a7b0430d8cdb78070b4c55a')
 
 	ans =
 
     '00112233445566778899aabbccddeeff'
 
 
-## Decrypt(Encrypt()): Example 1
+## Encrypt Function providing the default Key as input:
+
+	>> calculate_aes_128('00112233445566778899aabbccddeeff', '000102030405060708090a0b0c0d0e0f')
+
+	ans =
+
+    '69c4e0d86a7b0430d8cdb78070b4c55a'
+	
+ 	>> decrypt_aes_128('69c4e0d86a7b0430d8cdb78070b4c55a', '000102030405060708090a0b0c0d0e0f')
+
+	ans =
+
+    '00112233445566778899aabbccddeeff'
+
+
+## Encrypt and Decrypt Function with non-default Key:
+
+	>> key = '000102030405060708090a0b0c0d0e0e';
+	>> calculate_aes_128('00112233445566778899aabbccddeeff', key)
+
+	ans =
+
+    '74db6c596f02c433989fb6c9cd317f15'
+    
+	>> decrypt_aes_128('74db6c596f02c433989fb6c9cd317f15', key)
+
+	ans =
+
+    '00112233445566778899aabbccddeeff'
+
+## Decrypt(Encrypt()) with default Key: Example 1
 
 	>> decrypt_aes_128(calculate_aes_128('00112233445566778899aabbccddeeff'))
 
@@ -75,7 +102,7 @@ Decrypt Function: /matlab/decrypt_aes_128.m
     '00112233445566778899aabbccddeeff'
 	
 
-## Decrypt(Encrypt()): Example 2
+## Decrypt(Encrypt()) with default Key: Example 2
 
 	>> decrypt_aes_128(calculate_aes_128('000102030405060708090a0b0c0d0e0f'))
 
